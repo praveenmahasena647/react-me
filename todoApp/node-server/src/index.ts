@@ -1,9 +1,14 @@
+import process from 'process'
+import {connect} from 'mongoose'
 import app from './app';
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 42069
 
-app.listen(port, () => {
-  /* eslint-disable no-console */
-  console.log(`Listening: http://localhost:${port}`);
-  /* eslint-enable no-console */
-});
+
+
+connect("mongodb://127.0.0.1:27017/reactTodo").catch(err=>{
+    console.log(err)
+    process.exit()
+})
+
+app.listen(port,()=>console.log(`http://localhost:${port}`));
